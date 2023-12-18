@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	db, err := sql.Open("postgres", "postgres://postgres:postgres@localhost:5432/psql_connection_example?sslmode=disable")
+	db, err := sql.Open("postgres", "postgres://postgres:postgres@db:5432/psql_connection_example?sslmode=disable")
 	if err != nil {
 		panic(err)
 	}

@@ -1,6 +1,13 @@
 version: '3.9'
 services:
-#  app:
+  app:
+    image: go-psql-connection-example:0.0.1
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
+
   db:
     image: postgres:9-alpine3.15
     environment:
@@ -9,3 +16,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-psql_connection_example}
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "psql_connection_example", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
