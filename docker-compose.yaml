@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+#  app:
+  db:
+    image: postgres:9-alpine3.15
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-psql_connection_example}
+    ports:
+      - "5432:5432"
